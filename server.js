@@ -6,8 +6,16 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
-app.use(cors()); // Allows frontend to communicate with backend
+// --- Middleware ---
+
+// Updated CORS Configuration for Vercel Frontend
+app.use(cors({
+    // Note: Origin URL should not have a trailing slash
+    origin: ["https://prismai-three.vercel.app"], 
+    methods: ["POST", "GET", "PUT", "DELETE"],
+    credentials: true
+}));
+
 app.use(express.json());
 
 // --- CONFIGURATION ---
